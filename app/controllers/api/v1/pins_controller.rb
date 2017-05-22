@@ -18,7 +18,7 @@ module Api::V1
 
     private
     def pin_params
-      params.require(:pin).permit(:latitude, :longitude, :icon , :user_id, :image)
+      params.require(:pin).permit(:latitude, :longitude, :icon , :user_id)
     end
   end
 end

@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170505085521) do
+ActiveRecord::Schema.define(version: 20170519084525) do
+
+  create_table "pin_photos", force: :cascade do |t|
+    t.text     "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "pin_id"
+    t.index ["pin_id"], name: "index_pin_photos_on_pin_id"
+  end
 
   create_table "pins", force: :cascade do |t|
     t.float    "latitude"
@@ -19,7 +27,6 @@ ActiveRecord::Schema.define(version: 20170505085521) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "image"
   end
 
 end
