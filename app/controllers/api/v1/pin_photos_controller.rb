@@ -17,6 +17,11 @@ module Api::V1
       end
     end
 
+    def get_by_pin_id
+      photo_pin = PinPhoto.where(:pin_id => params[:pin_id])
+      render json: {:pin_photos => photo_pin}
+    end
+
     private
     def photo_params
       params.require(:pin_photo).permit(:photo, :pin_id)
