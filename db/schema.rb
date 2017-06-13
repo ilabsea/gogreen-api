@@ -10,20 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170519084525) do
+ActiveRecord::Schema.define(version: 20170711041412) do
 
-  create_table "pin_photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "pin_id"
-    t.index ["pin_id"], name: "index_pin_photos_on_pin_id", using: :btree
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.text   "description"
+    t.string "facebook_link"
+    t.text   "location"
+    t.date   "date"
+    t.time   "start_time"
+    t.time   "end_time"
+    t.string "image"
+  end
+
+  create_table "pin_photos", force: :cascade do |t|
+    t.text     "photo"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "pin_id"
+    t.boolean  "is_approved", default: false
+    t.index ["pin_id"], name: "index_pin_photos_on_pin_id"
   end
 
   create_table "pins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.float    "latitude",   limit: 24
     t.float    "longitude",  limit: 24
     t.string   "icon"
-    t.integer  "user_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.string   "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "marker_id"
+    t.integer  "total_photos"
   end
 
   add_foreign_key "pin_photos", "pins"
