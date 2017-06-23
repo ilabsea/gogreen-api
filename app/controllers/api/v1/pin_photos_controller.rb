@@ -18,7 +18,7 @@ module Api::V1
     end
 
     def get_by_pin_id
-      photo_pin = PinPhoto.where(:pin_id => params[:pin_id])
+      photo_pin = PinPhoto.where(:pin_id => params[:pin_id]).where(:is_approved => true);
       render json: {:pin_photos => photo_pin}
     end
 

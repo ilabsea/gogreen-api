@@ -21,6 +21,11 @@ module Api::V1
       render json: pin
     end
 
+    def count_by_user
+      count = Pin.where(:user_id => params[:user_id]).count
+      render json: {:number_of_pins => count}
+    end
+
     private
     def pin_params
       params.require(:pin).permit(:latitude, :longitude, :icon , :user_id, :marker_id)
