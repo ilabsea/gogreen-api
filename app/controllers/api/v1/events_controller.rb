@@ -18,7 +18,7 @@ module Api::V1
 
     private
     def event_params
-      params.require(:event).permit(:title, :location, :description, :date,
+      params.require(:event).permit(:title, :location, :description, :date, 
                     :start_time, :end_time, :facebook_link, :image)
     end
   end
