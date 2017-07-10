@@ -7,7 +7,7 @@ end
 
 
 gem 'rails', '~> 5.0.1'
-gem 'sqlite3'
+gem 'mysql2', '~> 0.3.18'
 gem 'puma', '~> 3.0'
 gem 'carrierwave', '~>1.1.0'
 gem 'carrierwave-base64', '~>2.5.0'

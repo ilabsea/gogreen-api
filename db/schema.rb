@@ -12,21 +12,19 @@
 
 ActiveRecord::Schema.define(version: 20170519084525) do
 
-  create_table "pin_photos", force: :cascade do |t|
-    t.text     "photo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "pin_id"
-    t.index ["pin_id"], name: "index_pin_photos_on_pin_id"
+  create_table "pin_photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "pin_id"
+    t.index ["pin_id"], name: "index_pin_photos_on_pin_id", using: :btree
   end
 
-  create_table "pins", force: :cascade do |t|
-    t.float    "latitude"
-    t.float    "longitude"
+  create_table "pins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.float    "latitude",   limit: 24
+    t.float    "longitude",  limit: 24
     t.string   "icon"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
+  add_foreign_key "pin_photos", "pins"
 end
