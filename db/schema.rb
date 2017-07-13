@@ -10,37 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711041412) do
+ActiveRecord::Schema.define(version: 20170711060418) do
 
-  create_table "events", force: :cascade do |t|
+  create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
-    t.text   "description"
+    t.text   "description",   limit: 65535
     t.string "facebook_link"
-    t.text   "location"
+    t.text   "location",      limit: 65535
     t.date   "date"
     t.time   "start_time"
     t.time   "end_time"
     t.string "image"
   end
 
-  create_table "pin_photos", force: :cascade do |t|
-    t.text     "photo"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "pin_id"
-    t.boolean  "is_approved", default: false
-    t.index ["pin_id"], name: "index_pin_photos_on_pin_id"
+  create_table "pin_photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "pin_id"
+    t.boolean "is_approved", default: false
+    t.index ["pin_id"], name: "index_pin_photos_on_pin_id", using: :btree
   end
 
   create_table "pins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.float    "latitude",   limit: 24
-    t.float    "longitude",  limit: 24
+    t.float    "latitude",     limit: 24
+    t.float    "longitude",    limit: 24
     t.string   "icon"
     t.string   "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "marker_id"
     t.integer  "total_photos"
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "username"
+    t.string   "password_digest"
+    t.boolean  "is_super_user",   default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_foreign_key "pin_photos", "pins"

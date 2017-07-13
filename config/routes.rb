@@ -9,4 +9,11 @@ Rails.application.routes.draw do
       get 'pin_photos/:pin_id/get_by_pin_id' => 'pin_photos#get_by_pin_id',as: :get_by_pin_id
     end
   end
+
+  root 'pins#index'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
 end
