@@ -1,0 +1,11 @@
+div.login-view{
+  padding:10px;
+  margin:auto;
+  width: 700px;
+  border: 1px solid #ccc;
+  overflow: auto;
+}
+
+.navbar-header{
+  margin-left: 100px !important;
+}
