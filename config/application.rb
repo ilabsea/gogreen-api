@@ -5,7 +5,8 @@ require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+# Bundler.require(*Rails.groups)
+Bundler.require(:default, Rails.env)
 ENV.update YAML.load_file('config/setting.yml')[Rails.env] rescue {}
 
 module Gogreen
