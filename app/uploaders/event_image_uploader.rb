@@ -1,7 +1,7 @@
 class EventImageUploader < CarrierWave::Uploader::Base
-  storage :file
+  storage :fog
   def store_dir
-    "public/uploads/events/image_path"
+    "gogreen/event"
   end
 
   def extension_whitelist

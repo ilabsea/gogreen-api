@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714080056) do
+ActiveRecord::Schema.define(version: 20170718033352) do
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20170714080056) do
   create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "pin_id"
     t.boolean "is_approved", default: false
+    t.string  "name"
     t.index ["pin_id"], name: "index_photos_on_pin_id", using: :btree
   end
 

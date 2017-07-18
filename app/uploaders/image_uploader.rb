@@ -1,7 +1,7 @@
 class ImageUploader < CarrierWave::Uploader::Base
-  storage :file
+  storage :fog
   def store_dir
-    "public/uploads/image_path"
+    "gogreen/photo"
   end
 
   def extension_whitelist
