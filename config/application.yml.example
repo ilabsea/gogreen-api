@@ -1,4 +1,6 @@
 defaults: &defaults
+  num_of_photo_col: ''
+  per_page: ''
 
 development:
   <<: *defaults

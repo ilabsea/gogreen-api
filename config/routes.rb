@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
     end
   end
+  resources :pins do
+    resources :photos
+  end
 
   root 'pins#index'
 

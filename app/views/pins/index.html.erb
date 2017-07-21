@@ -1,1 +1,25 @@
-Pin
+<div class="container">
+  <h3>List all pins</h3>
+  <table class="table table-bordered">
+    <tr>
+      <th>ID</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Icon</th>
+      <th>Photo</th>
+    </tr>
+    <% @pins.each do |pin| %>
+      <tr>
+        <td><%= pin.id %></td>
+        <td><%= pin.latitude %></td>
+        <td><%= pin.longitude %></td>
+        <td><%= pin.icon %></td>
+        <td><%= link_to 'view photo', pin_path(pin) %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="pull-right">
+    <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>
