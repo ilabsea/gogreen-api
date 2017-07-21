@@ -1,5 +1,6 @@
 module Api::V1
   class PhotosController < ApplicationController
+    skip_before_action :verify_authenticity_token
 
     def index
       pin = Pin.find(params[:pin_id])
