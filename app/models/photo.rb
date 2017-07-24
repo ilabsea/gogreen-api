@@ -1,6 +1,6 @@
 class Photo < ApplicationRecord
   belongs_to :pin
-  mount_uploader :name, ImageUploader
+  mount_base64_uploader :name, ImageUploader
 
   NUM_OF_COL = ENV['num_of_photo_col'].to_i
 
