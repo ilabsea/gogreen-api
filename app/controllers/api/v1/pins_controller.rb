@@ -24,6 +24,11 @@ module Api::V1
       end
     end
 
+    def show
+      pin = Pin.find_by(marker_id: params[:id])
+      render json: pin
+    end
+
     private
     def pin_params
       params.require(:pin).permit(:latitude, :longitude, :icon , :user_id, :marker_id)
