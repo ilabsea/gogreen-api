@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711060418) do
+ActiveRecord::Schema.define(version: 20170714080056) do
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 20170711060418) do
     t.string "image"
   end
 
-  create_table "pin_photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "pin_id"
     t.boolean "is_approved", default: false
-    t.index ["pin_id"], name: "index_pin_photos_on_pin_id", using: :btree
+    t.index ["pin_id"], name: "index_photos_on_pin_id", using: :btree
   end
 
   create_table "pins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -48,5 +48,5 @@ ActiveRecord::Schema.define(version: 20170711060418) do
     t.datetime "updated_at",                      null: false
   end
 
-  add_foreign_key "pin_photos", "pins"
+  add_foreign_key "photos", "pins"
 end

@@ -1,6 +1,5 @@
 module Api::V1
   class PinsController < ApplicationController
-    protect_from_forgery with: :null_session, if: ->{request.format.json?}
 
     def index
       pins = Pin.all
@@ -25,14 +24,9 @@ module Api::V1
       end
     end
 
-    def get_by_marker_id
-      pin = Pin.find_by marker_id: params[:marker_id]
+    def show
+      pin = Pin.find_by(marker_id: params[:id])
       render json: pin
-    end
-
-    def count_by_user
-      count = Pin.where(:user_id => params[:user_id]).count
-      render json: {:number_of_pins => count}
     end
 
     private
