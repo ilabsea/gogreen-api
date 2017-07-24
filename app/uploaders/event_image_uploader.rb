@@ -1,7 +1,7 @@
 class EventImageUploader < CarrierWave::Uploader::Base
-  storage :fog
+
   def store_dir
-    "gogreen/event"
+    "events"
   end
 
   def extension_whitelist
@@ -9,7 +9,7 @@ class EventImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "image_#{DateTime.now.to_i}.#{file.extension}" if original_filename
+    "#{model.id}/image_#{DateTime.now.to_i}.#{file.extension}" if original_filename
   end
 
 end
