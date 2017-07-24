@@ -23,21 +23,23 @@ $(function(){
         }
     });
 
-
   });
 
   $('.delete-photo').on('click', function(){
-    var pinId = $(this).data('pin-id');
-    var id = $(this).data('id');
+    var result = confirm("Are you sure, you want to delete this photo?");
+    if (result) {
+      var pinId = $(this).data('pin-id');
+      var id = $(this).data('id');
 
-    $.ajax({
-        url: "/pins/"+pinId+"/photos/"+id,
-        type: 'DELETE',
-        success: function(result) {
-          showAlert('Photo has been deleted.');
-          $('#'+id).remove();
-        }
-    });
+      $.ajax({
+          url: "/pins/"+pinId+"/photos/"+id,
+          type: 'DELETE',
+          success: function(result) {
+            showAlert('Photo has been deleted.');
+            $('#'+id).remove();
+          }
+      });
+    }
   });
 
 
