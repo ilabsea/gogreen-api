@@ -1,0 +1,16 @@
+defaults: &defaults
+  num_of_photo_col: ''
+  per_page: ''
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  aws_acccess_key_id: ''
+  aws_secret_access_key: ''
+  aws_region: ''
+  aws_bucket_name: ''
