@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Success</strong>
+        <span id='alert-message'></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info">
+    <h3>Pin/<%= @pin.id %></h3>
+    <p>Latitude : <%= @pin.latitude %></p>
+    <p>Longitude : <%= @pin.longitude %></p>
+    <p>Icon : <%= @pin.icon %> </p>
+  </div>
+  <table class="table table-bordered table-grid">
+    <% (0..@num_of_row).each do |row| %>
+      <tr>
+        <% (0..(Photo::NUM_OF_COL-1)).each do |col| %>
+          <% index = (Photo::NUM_OF_COL * row) + col %>
+          <% if index < @pin.photos.count %>
+          <td id="<%= @pin.photos[index].id %>">
+            <div class="image">
+              <img src="<%= @pin.photos[index].name %>" width="128px">
+              <div class="icon">
+                <span class="glyphicon glyphicon-remove-circle delete-photo" aria-hidden="true"
+                  data-id="<%= @pin.photos[index].id %>"
+                  data-pin-id="<%= @pin.id %>"></span>
+                <span class="photo-state glyphicon glyphicon-<%= photo_state(@pin.photos[index].is_approved) %>"
+                  aria-hidden="true" data-state="<%= photo_state(@pin.photos[index].is_approved) %>"
+                  data-id="<%= @pin.photos[index].id %>"
+                  data-pin-id="<%= @pin.id %>"></span>
+
+              </div>
+            </div>
+          </td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+
+  </table>
+</div>

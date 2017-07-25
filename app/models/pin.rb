@@ -16,6 +16,8 @@
 class Pin < ApplicationRecord
   has_many :photos
 
+  PER_PAGE = ENV['per_page'].to_i
+
   def update_total_photos
     pin = Pin.find_by_id(params[:id])
     pin.total_photos = pin.total_photos + 1;

@@ -1,0 +1,27 @@
+.table-grid{
+  width: auto !important;
+}
+
+.icon{
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.icon .glyphicon {
+    font-size: 1.8em;
+}
+
+.icon .glyphicon-check {
+  color: green;
+}
+.icon .glyphicon-unchecked {
+  color: grey;
+}
+.icon .glyphicon-remove-circle {
+  color: red;
+}
+
+.alert{
+  display: none;
+}

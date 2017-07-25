@@ -9,6 +9,7 @@ gem 'rails', '~> 5.0.1'
 gem 'mysql2', '~> 0.3.18'
 gem 'puma', '~> 3.0'
 gem 'carrierwave', '0.10.0'
+gem 'carrierwave-base64'
 gem 'fog'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -19,6 +20,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'dotenv-rails', '~> 2.2.1', groups: [:development, :test]
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
