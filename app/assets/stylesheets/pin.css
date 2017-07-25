@@ -8,17 +8,17 @@
   padding-top: 10px;
 }
 
-.icon span.glyphicon {
+.icon .glyphicon {
     font-size: 1.8em;
 }
 
-.icon span.glyphicon-check {
+.icon .glyphicon-check {
   color: green;
 }
-.icon span.glyphicon-unchecked {
+.icon .glyphicon-unchecked {
   color: grey;
 }
-.icon span.glyphicon-remove-circle {
+.icon .glyphicon-remove-circle {
   color: red;
 }
 

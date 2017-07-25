@@ -4,14 +4,14 @@ $(function(){
     var $photo = $(this);
     var pinId = $photo.data('pin-id');
     var id = $photo.data('id');
-    var isApproved = $photo.data('state') == 'unchecked' ? true : false ;
+    var isApproved = $photo.data('state') === 'unchecked' ? true : false ;
 
     $.ajax({
         url: "/pins/"+pinId+"/photos/"+id,
         type: 'PUT',
         data: { 'photo': {'is_approved': isApproved} },
         success: function(result) {
-          if(result['is_approved'] == true){
+          if(result['is_approved'] === true){
             $photo.data('state', 'check');
             $photo.removeClass('glyphicon-unchecked').addClass('glyphicon-check');
           }else{

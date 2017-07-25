@@ -2,7 +2,7 @@ class PhotosController < ApplicationController
   before_filter :authorize
 
   def update
-    @photo = Pin.find(params[:pin_id]).photos.find(params[:id])
+    @photo = Photo.find(params[:id])
     if @photo.update_attributes(photo_params)
       render json: @photo
     else
@@ -11,7 +11,7 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    @photo = Pin.find(params[:pin_id]).photos.find(params[:id])
+    @photo = Photo.find(params[:id])
     @photo.destroy
     head :ok
   end
