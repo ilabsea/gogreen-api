@@ -3,7 +3,7 @@ module Api::V1
     skip_before_action :verify_authenticity_token
 
     def index
-      events = Event.all
+      events = Event.all.order('id DESC')
       render json: {:events => events}
     end
 
@@ -19,7 +19,7 @@ module Api::V1
     private
     def event_params
       params.require(:event).permit(:title, :location, :description, :date,
-                    :start_time, :end_time, :facebook_link, :image)
+                    :start_time, :end_time, :facebook_link, :image, :user_id)
     end
   end
 end
