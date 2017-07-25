@@ -10,9 +10,9 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: <%= ENV['MYSQL2_DATABASE_TEST'] %>
+  database: gogreen_test
   pool: 5
-  username: <%= ENV['MYSQL2_USERNAME_TEST'] %>
+  username: root
   password: <%= ENV['MYSQL2_PASSWORD_TEST'] %>
   host: <%= ENV['MYSQL2_HOST_TEST'] %>
 

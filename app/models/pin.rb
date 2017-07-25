@@ -15,6 +15,7 @@
 
 class Pin < ApplicationRecord
   has_many :photos
+  belongs_to :user, :counter_cache => true
 
   PER_PAGE = ENV['per_page'].to_i
 

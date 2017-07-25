@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
       resources :events, only: [:index, :create]
 
+      resources :users, only: [:create, :show]
+
     end
   end
   resources :pins do
