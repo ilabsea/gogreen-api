@@ -11,6 +11,7 @@
 #  start_time    :time
 #  end_time      :time
 #  image         :string(255)
+#  user_id       :string(255)
 #
 
 class Event < ApplicationRecord

@@ -8,6 +8,9 @@
 #  is_super_user   :boolean          default(FALSE)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  facebook_id     :string(255)
+#  pins_count      :integer
+#  events_count    :integer
 #
 
 class User < ApplicationRecord
