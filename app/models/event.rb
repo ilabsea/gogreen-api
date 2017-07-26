@@ -18,4 +18,6 @@ class Event < ApplicationRecord
   mount_base64_uploader :image, EventImageUploader
   belongs_to :user, :counter_cache => true
 
+  self.per_page = 20
+
 end

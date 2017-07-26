@@ -12,7 +12,7 @@ class Photo < ApplicationRecord
   belongs_to :pin
   mount_base64_uploader :name, ImageUploader
 
-  NUM_OF_COL = ENV['num_of_photo_col'].to_i
+  NUM_OF_COL = 8
 
   def update_pin_total_photos
     Pin.update_total_photos
