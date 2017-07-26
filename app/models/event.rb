@@ -16,8 +16,16 @@
 
 class Event < ApplicationRecord
   mount_base64_uploader :image, EventImageUploader
-  belongs_to :user, :counter_cache => true
+  belongs_to :user, counter_cache: true
+
+  ## Callbacks
+  before_save :set_protocol
 
   self.per_page = 20
 
+  private
+
+  def set_protocol
+    self.facebook_link = facebook_link.start_with?('http://', 'https://') ? facebook_link : "http://#{facebook_link}"
+  end
 end
