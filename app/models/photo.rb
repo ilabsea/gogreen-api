@@ -6,15 +6,15 @@
 #  pin_id      :integer
 #  is_approved :boolean          default(FALSE)
 #  name        :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 
 class Photo < ApplicationRecord
-  belongs_to :pin
+  belongs_to :pin, counter_cache: :total_photos
   mount_base64_uploader :name, ImageUploader
 
   NUM_OF_COL = 8
 
-  def update_pin_total_photos
-    Pin.update_total_photos
-  end
+  scope :approved, -> { where(is_approved: true) }
 end
