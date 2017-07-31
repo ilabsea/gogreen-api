@@ -6,7 +6,7 @@
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Icon</th>
-      <th>Photo</th>
+      <th>Action</th>
     </tr>
     <% @pins.each do |pin| %>
       <tr>
@@ -14,7 +14,15 @@
         <td><%= pin.latitude %></td>
         <td><%= pin.longitude %></td>
         <td><%= pin.icon %></td>
-        <td><%= link_to 'view photo', pin_path(pin) %></td>
+        <% num_photo = pin.photos.count %>
+        <td>
+          <button class='btn btn-primary' type="button" name="button">view map</button>
+          <% if num_photo > 0 %>
+            <%= link_to "view photo (#{num_photo})", pin_path(pin), class: 'btn btn-info' %>
+          <% else %>
+            no photo
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>
