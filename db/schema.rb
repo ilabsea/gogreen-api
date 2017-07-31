@@ -10,35 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718100624) do
-
-  create_table "events", force: :cascade do |t|
-    t.string "title"
-    t.text   "description"
-    t.string "facebook_link"
-    t.text   "location"
-    t.date   "date"
-    t.time   "start_time"
-    t.time   "end_time"
-    t.string "image"
-    t.string "user_id"
-  end
+ActiveRecord::Schema.define(version: 20170725093530) do
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "title"
-    t.text   "description",   limit: 65535
-    t.string "facebook_link"
-    t.text   "location",      limit: 65535
-    t.date   "date"
-    t.time   "start_time"
-    t.time   "end_time"
-    t.string "image"
+    t.string   "title"
+    t.text     "description",   limit: 65535
+    t.string   "facebook_link"
+    t.text     "location",      limit: 65535
+    t.date     "date"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.string   "image"
+    t.string   "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "pin_id"
-    t.boolean "is_approved", default: false
-    t.string  "name"
+    t.integer  "pin_id"
+    t.boolean  "is_approved", default: false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["pin_id"], name: "index_photos_on_pin_id", using: :btree
   end
 
@@ -59,6 +52,9 @@ ActiveRecord::Schema.define(version: 20170718100624) do
     t.boolean  "is_super_user",   default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "facebook_id"
+    t.integer  "pins_count"
+    t.integer  "events_count"
   end
 
   add_foreign_key "photos", "pins"

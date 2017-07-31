@@ -4,7 +4,7 @@ module Api::V1
 
     def index
       pin = Pin.find(params[:pin_id])
-      render json: {:photos => pin.approved_photos}
+      render json: pin.photos.approved
     end
 
     def create

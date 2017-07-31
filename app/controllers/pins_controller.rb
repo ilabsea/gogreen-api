@@ -2,7 +2,7 @@ class PinsController < ApplicationController
   before_filter :authorize
 
   def index
-    @pins = Pin.paginate(page: params[:page], per_page: Pin::PER_PAGE)
+    @pins = Pin.order('created_at DESC').paginate(page: params[:page])
   end
 
   def show

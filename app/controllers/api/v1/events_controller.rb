@@ -3,8 +3,8 @@ module Api::V1
     skip_before_action :verify_authenticity_token
 
     def index
-      events = Event.all.order('id DESC')
-      render json: {:events => events}
+      events = Event.order('created_at DESC').paginate(page: params[:page])
+      render json: events, each_serializer: EventSerializer
     end
 
     def create
