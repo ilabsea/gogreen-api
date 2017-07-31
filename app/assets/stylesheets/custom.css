@@ -6,6 +6,12 @@
   overflow: auto;
 }
 
+.login-view .logo{
+  margin: 0 auto;
+  width:50%;
+  text-align: center;
+}
+
 .navbar-header{
   margin-left: 100px !important;
 }
