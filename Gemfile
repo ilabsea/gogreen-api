@@ -39,6 +39,11 @@ group :development do
   gem 'annotate',               '~> 2.7.2'
   gem 'pry-rails',              '~> 0.3.6'
   gem 'pry-byebug',             '~> 3.4.2'
+  gem 'capistrano', '~> 3.6'
+  gem 'capistrano-rails', '~> 1.3'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
