@@ -6,6 +6,18 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2YSqHlag7juB4lsz4mfMLH7P68UmdOVw&callback=initMap"
+    async defer></script>
+    <script>
+      var map;
+      var marker;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12
+        });
+      }
+    </script>
   </head>
 
   <body>

@@ -15,3 +15,7 @@
 .navbar-header{
   margin-left: 100px !important;
 }
+
+#map{
+  height: 350px;
+}

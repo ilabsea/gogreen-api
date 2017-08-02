@@ -42,6 +42,28 @@ $(function(){
     }
   });
 
+  $('#map-modal').on('shown.bs.modal', function (e) {
+    google.maps.event.trigger(map, "resize");
+    var button = $(e.relatedTarget);
+    var position = new google.maps.LatLng(button.data('lat'), button.data('lng'));
+    var icon = button.data('icon')
+
+    if(marker && marker.setPosition){
+      marker.setPosition(position);
+      marker.setIcon('/assets/'+icon+'-small.png');
+    }else{
+      marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    title: 'Pin',
+                    icon: '/assets/'+icon+'-small.png'
+              });
+    }
+
+    map.setCenter(position);
+
+  })
+
 
   function showAlert(message){
     $('#alert-message').html(message);
