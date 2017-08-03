@@ -4,7 +4,7 @@ module Api::V1
 
     def index
       pins = Pin.all
-      render json: {:pins => pins}
+      render json: pins, status: :ok
     end
 
     def create
