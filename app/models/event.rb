@@ -5,15 +5,15 @@
 #  id            :integer          not null, primary key
 #  title         :string(255)
 #  description   :text(65535)
-#  facebook_link :string(255)
-#  location      :text(65535)
+#  facebook_link :string(255)      not null
+#  location      :string(255)
 #  date          :date
 #  start_time    :time
 #  end_time      :time
 #  image         :string(255)
-#  user_id       :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
+#  user_id       :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class Event < ApplicationRecord

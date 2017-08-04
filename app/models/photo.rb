@@ -2,12 +2,13 @@
 #
 # Table name: photos
 #
-#  id          :integer          not null, primary key
-#  pin_id      :integer
-#  is_approved :boolean          default(FALSE)
-#  name        :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id         :integer          not null, primary key
+#  pin_id     :integer
+#  status     :string(50)
+#  name       :string(255)
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Photo < ApplicationRecord

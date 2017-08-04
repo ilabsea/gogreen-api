@@ -18,10 +18,11 @@ module Api::V1
 
     def update
       pin = Pin.find_by_id(params[:id])
-      pin.icon = params[:icon]
-      if pin.valid?
-        pin.save!
+
+      if pin.update_attributes(icon: params[:icon])
         render json: pin
+      else
+        render json: pin.errors.messages, status: :unprocessable_entity
       end
     end
 
@@ -31,6 +32,7 @@ module Api::V1
     end
 
     private
+
     def pin_params
       params.require(:pin).permit(:latitude, :longitude, :icon , :user_id, :marker_id)
     end

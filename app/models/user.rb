@@ -6,11 +6,11 @@
 #  username        :string(255)
 #  password_digest :string(255)
 #  is_super_user   :boolean          default(FALSE)
+#  facebook_id     :string(255)
+#  pins_count      :integer          default(0)
+#  events_count    :integer          default(0)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  facebook_id     :string(255)
-#  pins_count      :integer
-#  events_count    :integer
 #
 
 class User < ApplicationRecord
