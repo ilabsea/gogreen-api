@@ -21,7 +21,7 @@ module Api::V1
       pin.icon = params[:icon]
       if pin.valid?
         pin.save!
-        render json: {pin: pin, status: 201}
+        render json: pin
       end
     end
 
