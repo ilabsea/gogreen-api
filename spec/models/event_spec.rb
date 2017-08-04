@@ -21,8 +21,8 @@ RSpec.describe Event, type: :model do
   end
 
   describe '.counter cache' do
-    let!(:user) { create(:user) }
-    let!(:event)  { create(:event, user: user) }
+    let!(:user)  { create(:user) }
+    let!(:event) { create(:event, user: user) }
 
     it 'increases events_count by 1' do
       expect(user.reload.events_count).to eq 1
