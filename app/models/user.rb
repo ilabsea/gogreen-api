@@ -14,20 +14,23 @@
 #
 
 class User < ApplicationRecord
+  self.table_name = 'users'
+
   has_secure_password
   has_many :pins
   has_many :events
 
-  validates :username, :password, :password_confirmation, :presence => true
-  validates_uniqueness_of :username
+  validates :username, presence: true, uniqueness: true
 
   def self.register_with_facebook_id(facebook_id)
     user = User.find_or_initialize_by(facebook_id: facebook_id)
-    user.username = facebook_id
-    user.password = user.password_confirmation = SecureRandom.base64
-    user.save
+
+    if !user.persisted?
+      user.username = facebook_id
+      user.password = user.password_confirmation = SecureRandom.base64
+      user.save
+    end
 
     return user
   end
-
 end

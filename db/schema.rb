@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170804092243) do
   create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "pin_id"
     t.string   "status",     limit: 50
+    t.string   "reason"
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at",            null: false

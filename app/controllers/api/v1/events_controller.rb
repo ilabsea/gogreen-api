@@ -4,11 +4,13 @@ module Api::V1
 
     def index
       events = Event.order('created_at DESC').paginate(page: params[:page])
-      render json: events, each_serializer: EventSerializer
+
+      render json: events
     end
 
     def create
       event = Event.new(event_params)
+
       if event.save
         render json: event, status: :created
       else
@@ -17,6 +19,7 @@ module Api::V1
     end
 
     private
+
     def event_params
       params.require(:event).permit(:title, :location, :description, :date,
                     :start_time, :end_time, :facebook_link, :image, :user_id)

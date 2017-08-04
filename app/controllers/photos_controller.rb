@@ -3,6 +3,7 @@ class PhotosController < ApplicationController
 
   def update
     @photo = Photo.find(params[:id])
+
     if @photo.update_attributes(photo_params)
       render json: @photo
     else
@@ -13,12 +14,13 @@ class PhotosController < ApplicationController
   def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy
+
     head :ok
   end
 
   private
-  def photo_params
-    params.require(:photo).permit(:pin_id, :is_approved)
-  end
 
+  def photo_params
+    params.require(:photo).permit(:pin_id, :name, :user_id, :status, :reason)
+  end
 end

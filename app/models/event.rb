@@ -17,11 +17,16 @@
 #
 
 class Event < ApplicationRecord
+  self.table_name = 'events'
+
   mount_base64_uploader :image, EventImageUploader
   belongs_to :user, counter_cache: true
 
   ## Callbacks
   before_save :set_protocol
+
+  validates :title, :facebook_link, :location, presence: true
+  validates :date, :start_time, :end_time, :image, :user_id, presence: true
 
   self.per_page = 20
 

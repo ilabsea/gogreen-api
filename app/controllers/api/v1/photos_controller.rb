@@ -4,11 +4,13 @@ module Api::V1
 
     def index
       pin = Pin.find(params[:pin_id])
+
       render json: pin.photos
     end
 
     def create
       photo = Pin.find(params[:pin_id]).photos.build(photo_params)
+
       if photo.save
         render json: photo, status: :created
       else
@@ -17,8 +19,9 @@ module Api::V1
     end
 
     private
+
     def photo_params
-      params.require(:photo).permit(:pin_id, :name)
+      params.require(:photo).permit(:pin_id, :name, :user_id, :status, :reason)
     end
   end
 end

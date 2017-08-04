@@ -4,15 +4,18 @@ module Api::V1
 
     def create
       user = User.register_with_facebook_id(user_params[:facebook_id])
+
       render json: user
     end
 
     def show
       user = User.find(params[:id])
+
       render json: user
     end
 
     private
+
     def user_params
       params.require(:user).permit(:facebook_id)
     end

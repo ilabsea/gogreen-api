@@ -4,6 +4,7 @@ module Api::V1
 
     def index
       pins = Pin.all
+
       render json: pins, status: :ok
     end
 
@@ -28,6 +29,7 @@ module Api::V1
 
     def show
       pin = Pin.find_by(marker_id: params[:id])
+
       render json: pin
     end
 

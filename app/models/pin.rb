@@ -13,8 +13,16 @@
 #
 
 class Pin < ApplicationRecord
+  self.table_name = 'pins'
+
+  ICONS = %w(happy sad trash)
+
   has_many :photos
   belongs_to :user, counter_cache: true
+
+  validates :latitude, :longitude, :icon, presence: true
+  validates :user_id, :marker_id, presence: true
+  validates :icon, inclusion: ICONS
 
   self.per_page = 20
 end
