@@ -21,6 +21,7 @@ class User < ApplicationRecord
   has_many :events
 
   validates :username, presence: true, uniqueness: true
+  validates :facebook_id, presence: true
 
   def self.register_with_facebook_id(facebook_id)
     user = User.find_or_initialize_by(facebook_id: facebook_id)

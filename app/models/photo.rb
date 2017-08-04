@@ -22,7 +22,7 @@ class Photo < ApplicationRecord
   STATUSES = %w(pending approved rejected)
   NUM_OF_COL = 8
 
-  scope :approved, -> { where(is_approved: 'approved') }
+  scope :approved, -> { where(status: 'approved') }
 
   ## Callbacks
   before_create :set_status

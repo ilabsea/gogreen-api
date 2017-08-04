@@ -19,4 +19,13 @@ RSpec.describe Event, type: :model do
       expect(subject.facebook_link).to eq 'http://facebook.com'
     end
   end
+
+  describe '.counter cache' do
+    let!(:user) { create(:user) }
+    let!(:event)  { create(:event, user: user) }
+
+    it 'increases events_count by 1' do
+      expect(user.reload.events_count).to eq 1
+    end
+  end
 end

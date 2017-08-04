@@ -20,9 +20,9 @@ class Pin < ApplicationRecord
   has_many :photos
   belongs_to :user, counter_cache: true
 
-  validates :latitude, :longitude, :icon, presence: true
+  validates :latitude, :longitude, presence: true
   validates :user_id, :marker_id, presence: true
-  validates :icon, inclusion: ICONS
+  validates :icon, presence: true, inclusion: ICONS
 
   self.per_page = 20
 end
