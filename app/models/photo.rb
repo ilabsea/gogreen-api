@@ -31,6 +31,10 @@ class Photo < ApplicationRecord
   validates :pin_id, :user_id, presence: true
   validates :status, inclusion: { in: STATUSES, allow_blank: true }
 
+  def approved?
+    status == 'approved'
+  end
+
   private
 
   def set_status

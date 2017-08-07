@@ -1,9 +1,8 @@
-<div class="container">
+<div class="container" id='pin-show'>
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <div class="alert alert-success alert-dismissible" role="alert">
+      <div class="alert alert-success alert-dismissible" role="alert" style="position: absolute">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Success</strong>
         <span id='alert-message'></span>
       </div>
     </div>
@@ -26,18 +25,19 @@
         <% (0..(Photo::NUM_OF_COL-1)).each do |col| %>
           <% index = (Photo::NUM_OF_COL * row) + col %>
           <% if index < @pin.photos.count %>
-          <td id="<%= @pin.photos[index].id %>">
+          <td id="<%= @pin.photos[index].id %>" class="<%= @pin.photos[index].status%>">
             <div class="image">
               <img src="<%= @pin.photos[index].name %>" width="128px">
-              <div class="icon">
-                <span class="glyphicon glyphicon-remove-circle delete-photo" aria-hidden="true"
+              <div class='status'>rejected</div>
+              <div class="icon actions">
+                <span class="pointer glyphicon glyphicon-remove-circle reject-photo" aria-hidden="true"
+                  data-id="<%= @pin.photos[index].id %>"
+                  data-pin-id="<%= @pin.id %>"
+                  data-toggle="modal" data-target="#reason-modal"></span>
+                <span class="pointer photo-state glyphicon glyphicon-<%= photo_state(@pin.photos[index].approved?) %>"
+                  aria-hidden="true" data-state="<%= photo_state(@pin.photos[index].approved?) %>"
                   data-id="<%= @pin.photos[index].id %>"
                   data-pin-id="<%= @pin.id %>"></span>
-                <span class="photo-state glyphicon glyphicon-<%= photo_state(@pin.photos[index].is_approved) %>"
-                  aria-hidden="true" data-state="<%= photo_state(@pin.photos[index].is_approved) %>"
-                  data-id="<%= @pin.photos[index].id %>"
-                  data-pin-id="<%= @pin.id %>"></span>
-
               </div>
             </div>
           </td>
@@ -50,3 +50,32 @@
 </div>
 
 <%= render 'map' %>
+
+<!-- Modal -->
+<div class="modal fade" id="reason-modal" tabindex="-1" role="dialog" aria-labelledby="reasonModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="reasonModal">Reject confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <label>Are you sure you want to reject this photo?</label>
+          <div class="form-group">
+            <label for="message-text" class="form-control-label">Please give reason:</label>
+            <textarea class="form-control" id="reason-text"></textarea>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id='confirm'>Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>

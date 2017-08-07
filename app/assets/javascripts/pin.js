@@ -1,46 +1,33 @@
 $(function(){
 
-  $('.photo-state').on('click', function(){
+  $('.photo-state').on('click', function() {
     var $photo = $(this);
     var pinId = $photo.data('pin-id');
     var id = $photo.data('id');
-    var isApproved = $photo.data('state') === 'unchecked' ? true : false ;
+    var status = $photo.data('state') === 'unchecked' ? 'approved' : 'pending' ;
 
     $.ajax({
-        url: "/pins/"+pinId+"/photos/"+id,
-        type: 'PUT',
-        data: { 'photo': {'is_approved': isApproved} },
-        success: function(result) {
-          if(result['is_approved'] === true){
-            $photo.data('state', 'check');
-            $photo.removeClass('glyphicon-unchecked').addClass('glyphicon-check');
-          }else{
-            $photo.data('state', 'unchecked');
-            $photo.removeClass('glyphicon-check').addClass('glyphicon-unchecked');
-          }
-          showAlert('You successfully approve the photo.');
-
+      url: "/pins/" + pinId + "/photos/" + id,
+      type: 'PUT',
+      data: { 'photo': {'status': status} },
+      success: function(result) {
+        if(result['status'] === 'approved') {
+          $photo.data('state', 'check');
+          $photo.removeClass('glyphicon-unchecked').addClass('glyphicon-check');
+          showAlert('The photo has been approved successfully.');
+        } else {
+          $photo.data('state', 'unchecked');
+          $photo.removeClass('glyphicon-check').addClass('glyphicon-unchecked');
+          showAlert('The photo has been change to pending.');
         }
+      }
     });
 
   });
 
-  $('.delete-photo').on('click', function(){
-    var result = confirm("Are you sure, you want to delete this photo?");
-    if (result) {
-      var pinId = $(this).data('pin-id');
-      var id = $(this).data('id');
-
-      $.ajax({
-          url: "/pins/"+pinId+"/photos/"+id,
-          type: 'DELETE',
-          success: function(result) {
-            showAlert('Photo has been deleted.');
-            $('#'+id).remove();
-          }
-      });
-    }
-  });
+  var myPhotoId;
+  var myReason;
+  var myPinId;
 
   $('#map-modal').on('shown.bs.modal', function (e) {
     google.maps.event.trigger(map, "resize");
@@ -64,13 +51,30 @@ $(function(){
 
   })
 
+  $('#reason-modal').on('show.bs.modal', function (event) {
+    myPhotoId = $(event.relatedTarget).data('id');
+    myReason = $('#reason-text').val();
+    myPinId = $(event.relatedTarget).data('pinId');
+  })
+
+  $('#confirm').on('click', function(e) {
+    $.ajax({
+      url: "/pins/" + myPinId + "/photos/" + myPhotoId,
+      type: 'PUT',
+      data: { 'photo': {'status': 'rejected', 'reason': myReason} },
+      success: function(result) {
+        $('#reason-modal').modal('hide');
+        $('#' + myPhotoId).addClass('rejected');
+
+        showAlert('The photo has been rejected successfully.');
+      }
+    });
+  })
 
   function showAlert(message){
     $('#alert-message').html(message);
-    $('.alert').fadeIn(2000, function(){
-      $('.alert').fadeOut(2000);
+    $('.alert').fadeIn(100, function() {
+      $('.alert').fadeOut(3000);
     });
   }
-
-
 });

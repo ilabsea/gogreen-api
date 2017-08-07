@@ -6,7 +6,6 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:events) }
   it { is_expected.to validate_presence_of(:username) }
   it { is_expected.to validate_uniqueness_of(:username) }
-  it { is_expected.to validate_presence_of(:facebook_id) }
 
   describe '.register_with_facebook_id' do
     it "return user" do
