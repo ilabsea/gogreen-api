@@ -23,6 +23,7 @@ class Photo < ApplicationRecord
   NUM_OF_COL = 8
 
   scope :approved, -> { where(status: 'approved') }
+  scope :newest, -> { order('created_at DESC') }
 
   ## Callbacks
   before_create :set_status
