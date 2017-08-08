@@ -9,7 +9,6 @@ RSpec.describe Event, type: :model do
   it { is_expected.to validate_presence_of(:date) }
   it { is_expected.to validate_presence_of(:start_time) }
   it { is_expected.to validate_presence_of(:end_time) }
-  it { is_expected.to validate_presence_of(:image) }
   it { is_expected.to validate_presence_of(:user_id) }
 
   describe '#callback' do
