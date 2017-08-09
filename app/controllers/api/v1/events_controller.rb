@@ -21,8 +21,13 @@ module Api::V1
     private
 
     def event_params
-      params.require(:event).permit(:title, :location, :description, :date,
+      param = params.require(:event).permit(:title, :location, :description, :date,
                     :start_time, :end_time, :facebook_link, :image, :user_id)
+
+      param['start_time'] = param['start_time'].in_time_zone("Bangkok")
+      param['end_time'] = param['end_time'].in_time_zone("Bangkok")
+      param
+
     end
   end
 end
