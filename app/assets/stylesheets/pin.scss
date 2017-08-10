@@ -1,0 +1,72 @@
+.table-grid{
+  width: auto !important;
+}
+
+.icon{
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.icon .glyphicon {
+  font-size: 1.8em;
+}
+
+.icon .glyphicon-check {
+  color: green;
+}
+
+.icon .glyphicon-unchecked {
+  color: grey;
+}
+
+.icon .glyphicon-remove-circle {
+  color: red;
+}
+
+.alert{
+  display: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.image {
+  position: relative;
+}
+
+.modal-body label {
+  font-weight: normal;
+}
+
+.close {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+#pin-show {
+  .message {
+    position: absolute;
+  }
+
+  .status {
+    display: none;
+  }
+
+  .rejected .status {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: red;
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 3px 0 0 3px;
+  }
+
+  .rejected .icon {
+    visibility: hidden;
+  }
+}

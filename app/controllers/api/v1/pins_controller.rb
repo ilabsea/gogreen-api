@@ -4,7 +4,8 @@ module Api::V1
 
     def index
       pins = Pin.all
-      render json: {:pins => pins}
+
+      render json: pins, status: :ok
     end
 
     def create
@@ -18,19 +19,22 @@ module Api::V1
 
     def update
       pin = Pin.find_by_id(params[:id])
-      pin.icon = params[:icon]
-      if pin.valid?
-        pin.save!
-        render json: {pin: pin, status: 201}
+
+      if pin.update_attributes(icon: params[:icon])
+        render json: pin
+      else
+        render json: pin.errors.messages, status: :unprocessable_entity
       end
     end
 
     def show
       pin = Pin.find_by(marker_id: params[:id])
+
       render json: pin
     end
 
     private
+
     def pin_params
       params.require(:pin).permit(:latitude, :longitude, :icon , :user_id, :marker_id)
     end
