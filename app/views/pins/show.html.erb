@@ -1,7 +1,7 @@
 <div class="container" id='pin-show'>
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <div class="alert alert-success alert-dismissible" role="alert" style="position: absolute">
+      <div class="alert alert-success alert-dismissible message" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span id='alert-message'></span>
       </div>
@@ -49,33 +49,6 @@
   </table>
 </div>
 
-<%= render 'map' %>
-
 <!-- Modal -->
-<div class="modal fade" id="reason-modal" tabindex="-1" role="dialog" aria-labelledby="reasonModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="reasonModal">Reject confirmation</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <form>
-          <label>Are you sure you want to reject this photo?</label>
-          <div class="form-group">
-            <label for="message-text" class="form-control-label">Please give reason:</label>
-            <textarea class="form-control" id="reason-text"></textarea>
-          </div>
-        </form>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" id='confirm'>Confirm</button>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render 'map' %>
+<%= render 'reject_modal' %>

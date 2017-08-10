@@ -47,6 +47,10 @@
 }
 
 #pin-show {
+  .message {
+    position: absolute;
+  }
+
   .status {
     display: none;
   }
