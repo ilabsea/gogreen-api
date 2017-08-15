@@ -14,7 +14,7 @@
         <td><%= pin.id %></td>
         <td><%= pin.latitude %></td>
         <td><%= pin.longitude %></td>
-        <td><%= pin.icon %></td>
+        <td><img src="/assets/<%= pin.icon %>"-small.png width="32px" /></td>
         <% num_photo = pin.photos.count %>
         <td>
           <button class='btn btn-primary' type="button" name="button" data-toggle="modal" data-target="#map-modal"
