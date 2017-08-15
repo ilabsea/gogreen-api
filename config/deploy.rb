@@ -1,4 +1,4 @@
-set :application, "gogreen"
+set :application, "gogreen-api"
 set :repo_url, "https://github.com/ilabsea/gogreen-api.git"
 
 set :rbenv_ruby, File.read('.ruby-version').strip
@@ -8,7 +8,7 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
 
 set :branch, :develop
-set :deploy_to, '/var/www/gogreen'
+set :deploy_to, '/var/www/gogreen-api'
 
 append :linked_files, "config/database.yml", "config/secrets.yml", "config/application.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
