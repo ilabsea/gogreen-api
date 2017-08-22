@@ -56,7 +56,9 @@
   }
 
   .rejected .status {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     right: 0;
     top: 0;
@@ -64,6 +66,8 @@
     color: #fff;
     padding: 2px 4px;
     border-radius: 3px 0 0 3px;
+    text-decoration: none;
+    .symbol { margin-left: 5px;}
   }
 
   .rejected .icon {

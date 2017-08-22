@@ -1,15 +1,32 @@
 $(function() {
   var myPhotoId;
   var myPinId;
+  var currentPhoto;
 
   function init() {
     onClickPhotoState();
     onViewMap();
     onOpenRejectModal();
     initValidation();
+    onFocusStatus();
   }
 
   init();
+
+  function onFocusStatus() {
+    $('body').popover({
+      selector: '.status',
+      content: getReason,
+      title: 'Reason',
+      placement: 'bottom',
+      trigger: 'focus',
+      container: 'body'
+    });
+  }
+
+  function getReason() {
+    return $(this).parents('td').data('reason');
+  }
 
   function onClickPhotoState() {
     $('.photo-state').on('click', function() {
@@ -65,6 +82,7 @@ $(function() {
     $('#reason-modal').on('show.bs.modal', function (event) {
       myPhotoId = $(event.relatedTarget).data('id');
       myPinId = $(event.relatedTarget).data('pinId');
+      currentPhoto = $(event.relatedTarget);
     })
   }
 
@@ -85,16 +103,22 @@ $(function() {
   }
 
   function submitForm() {
+    var reason = $('#reason-text').val();
     $.ajax({
       url: "/pins/" + myPinId + "/photos/" + myPhotoId,
       type: 'PUT',
-      data: { 'photo': {'status': 'rejected', 'reason': $('#reason-text').val() } },
+      data: { 'photo': {'status': 'rejected', 'reason': reason } },
       success: function(result) {
+        setReasonToPhoto(reason);
         displayStatus();
         clearReasonDom();
         showAlert('The photo has been rejected successfully.');
       }
     });
+  }
+
+  function setReasonToPhoto(reason) {
+    $(currentPhoto).parents('td').data('reason', reason);
   }
 
   function displayStatus() {
