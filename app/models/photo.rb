@@ -30,12 +30,17 @@ class Photo < ApplicationRecord
 
   validates :pin_id, :user_id, presence: true
   validates :status, inclusion: { in: STATUSES, allow_blank: true }
+  validates :reason, presence: true, if: :rejected_status?
 
   def approved?
     status == 'approved'
   end
 
   private
+
+  def rejected_status?
+    status == 'rejected'
+  end
 
   def set_status
     self.status = 'pending'
