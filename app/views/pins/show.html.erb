@@ -9,7 +9,7 @@
   </div>
 
   <div class="info">
-    <h3>Pin/<%= @pin.id %> <img src="/assets/<%= @pin.icon %>"-small.png width="32px" /></h3>
+    <h3>Pin/<%= @pin.id %> <img src="/assets/<%= @pin.icon %>-small.png" width="32px" /></h3>
     <button class='btn btn-primary' type="button" name="button" data-toggle="modal" data-target="#map-modal"
                 data-lat="<%= @pin.latitude %>" data-lng="<%= @pin.longitude %>" data-icon="<%= @pin.icon %>">
         view map</button>
@@ -25,10 +25,15 @@
         <% (0..(Photo::NUM_OF_COL-1)).each do |col| %>
           <% index = (Photo::NUM_OF_COL * row) + col %>
           <% if index < @pin.photos.count %>
-          <td id="<%= @pin.photos[index].id %>" class="<%= @pin.photos[index].status%>">
+          <td id="<%= @pin.photos[index].id %>" class="<%= @pin.photos[index].status%>" data-reason="<%= @pin.photos[index].reason %>">
             <div class="image">
               <img src="<%= @pin.photos[index].name %>" width="128px">
-              <div class='status'>rejected</div>
+
+              <a tabindex="0" class='status pointer' role="button">
+                rejected
+                <i class="glyphicon glyphicon-info-sign symbol"></i>
+              </a>
+
               <div class="icon actions">
                 <span class="pointer glyphicon glyphicon-remove-circle reject-photo" aria-hidden="true"
                   data-id="<%= @pin.photos[index].id %>"

@@ -8,20 +8,20 @@
         </button>
       </div>
 
-      <div class="modal-body">
-        <form>
+      <form id='myForm' role="form">
+        <div class="modal-body">
           <label>Are you sure you want to reject this photo?</label>
           <div class="form-group">
             <label for="message-text" class="form-control-label">Please give reason:</label>
-            <textarea class="form-control" id="reason-text"></textarea>
+            <textarea class="form-control" id="reason-text" required></textarea>
           </div>
-        </form>
-      </div>
+        </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" id='confirm'>Confirm</button>
-      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id='confirm'>Confirm</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
