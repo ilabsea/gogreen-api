@@ -3,7 +3,7 @@ module Api::V1
     skip_before_action :verify_authenticity_token
 
     def index
-      pins = Pin.all
+      pins = Pin.search_within_map(params)
 
       render json: pins, status: :ok
     end

@@ -8,19 +8,22 @@ namespace :simulate do
 
   def generate_pins(amount)
     icons = %w(happy sad trash);
-    latitudes = [11.5522, 11.5536, 11.5549, 11.5515, 11.5527, 11.5502, 11.5496, 11.5513, 11.5539, 11.551, 11.5505, 11.5528, 11.5542, 11.5511, 11.5496, 11.549, 11.5521, 11.5506];
-    longitudes = [104.934, 104.935, 104.932, 104.936, 104.938, 104.936, 104.933, 104.933, 104.937, 104.937, 104.935, 104.931, 104.932, 104.931, 104.931, 104.931, 104.93, 104.929];
     user_ids = get_user_ids;
 
     (amount.to_i).times do |i|
       pin = Pin.new
-      pin.user_id = user_ids.sample
-      pin.latitude = latitudes.sample
-      pin.longitude = longitudes.sample
-      pin.icon = icons.sample
-      pin.marker_id = "marker_m#{Pin.maximum(:id) + i + 1}"
+      pin.user_id   = user_ids.sample
+      pin.latitude  = rand(11.0...12)
+      pin.longitude = rand(104.0...105)
+      pin.icon      = icons.sample
+      pin.marker_id = "marker_m#{Pin.maximum(:id).to_i + i + 1}"
       pin.save
+
+      print '.'
     end
+
+    puts ''
+    puts "==========#{amount} pins generated successfully=========="
   end
 
   def get_user_ids

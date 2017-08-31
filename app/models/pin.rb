@@ -25,4 +25,11 @@ class Pin < ApplicationRecord
   validates :icon, presence: true, inclusion: ICONS
 
   self.per_page = 20
+
+  def self.search_within_map(params)
+    where('(latitude  >= ? && latitude  <= ?) &&
+           (longitude >= ? && longitude <= ?)',
+           params[:sw_lat], params[:ne_lat],
+           params[:sw_lng], params[:ne_lng])
+  end
 end
