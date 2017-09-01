@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  pin_id     :integer
 #  status     :string(50)
-#  reason     :string(255)
+#  reason     :text(65535)
 #  name       :string(255)
 #  user_id    :integer
 #  created_at :datetime         not null
